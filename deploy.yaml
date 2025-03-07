@@ -15,6 +15,7 @@ spec:
       containers:
         - name: sample
           image: jp.icr.io/cti-roks-training/sample:latest
+          imagePullPolicy: Always
           ports:
             - name: http
               containerPort: 8080
