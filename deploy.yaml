@@ -1,19 +1,19 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: sample
+  name: app1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: sample
+      app: app1
   template:
     metadata:
       labels:
-        app: sample
+        app: app1
     spec:
       containers:
-        - name: sample
+        - name: app1
           image: jp.icr.io/cti-roks-training/cicd-app1:latest
           imagePullPolicy: Always
           ports:
@@ -26,7 +26,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: sample
+  name: app1
 spec:
   ports:
     - name: http-8080
@@ -34,16 +34,16 @@ spec:
       protocol: TCP
       targetPort: 8080
   selector:
-    app: sample
+    app: app1
 ---
 kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
-  name: sample
+  name: app1
 spec:
   to:
     kind: Service
-    name: sample
+    name: app1
   tls:
     termination: edge
   port:
